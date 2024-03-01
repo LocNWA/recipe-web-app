@@ -51,6 +51,9 @@
     border-radius: 3px;
     display: flex;
     align-items: center;
+    max-height: 65px;
+    transition: max-height 0.5s;
+    overflow: hidden;
 }
 
 input{
@@ -65,3 +68,65 @@ input{
     margin-left: 15px;
     color: #999;
 }
+
+form p{
+    text-align: left;
+    font-size: 13px;
+}
+
+form p a{
+    text-decoration: none;
+    color: #3c00a0;
+}
+
+.btn-field{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30%;
+}
+
+.sbtn-field{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-field button{
+    flex-basis: 48%;
+    background: #eb893e;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+}
+
+.sbtn-field button{
+    flex-basis: 48%;
+    background: #eb893e;
+    color: #fff;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+}
+
+.input-group{
+    height: 180px;
+}
+
+.btn-field button.disable{
+    background: #eaeaea;
+    color: #eb893e;
+}
+
+.sbtn-field button.disable{
+    background: #eaeaea;
+    color: #eb893e;
+}
+
