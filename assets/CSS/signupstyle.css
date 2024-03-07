@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-.container{
+.container {
     width: 100%;
     height: 100vh;
     background-image: url(signUpBackgroundImage.jpg);
@@ -14,26 +14,26 @@
     position: relative;
 }
 
-.form-box{
+.form-box {
     width: 90%;
     max-width: 450px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     background: #fff;
     padding: 50px 60px 70px;
     text-align: center;
 }
 
-.form-box h1{
+.form-box h1 {
     font-size: 35px;
     margin-bottom: 60px;
     color: #213032;
     position: relative;
 }
 
-.form-box h1::after{
+.form-box h1::after {
     content: '';
     width: 30px;
     height: 4px;
@@ -45,7 +45,7 @@
     transform: translateX(-50%);
 }
 
-.input-field{
+.input-field {
     background: #e5eeeb;
     margin: 15px 0;
     border-radius: 3px;
@@ -56,7 +56,7 @@
     overflow: hidden;
 }
 
-input{
+input {
     width: 100%;
     background: transparent;
     border: 0;
@@ -64,35 +64,35 @@ input{
     padding: 18px 15px;
 }
 
-.input-field i{
+.input-field i {
     margin-left: 15px;
     color: #999;
 }
 
-form p{
+form p {
     text-align: left;
     font-size: 13px;
 }
 
-form p a{
+form p a {
     text-decoration: none;
     color: #3c00a0;
 }
 
-.btn-field{
+.btn-field {
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding-top: 30%;
 }
 
-.sbtn-field{
+.sbtn-field {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.btn-field button{
+.btn-field button {
     flex-basis: 48%;
     background: #eb893e;
     color: #fff;
@@ -104,7 +104,7 @@ form p a{
     transition: background 1s;
 }
 
-.sbtn-field button{
+.sbtn-field button {
     flex-basis: 48%;
     background: #eb893e;
     color: #fff;
@@ -116,17 +116,16 @@ form p a{
     transition: background 1s;
 }
 
-.input-group{
-    height: 180px;
+.input-group {
+    height: 140px;
 }
 
-.btn-field button.disable{
+.btn-field button.disable {
     background: #eaeaea;
     color: #eb893e;
 }
 
-.sbtn-field button.disable{
+.sbtn-field button.disable {
     background: #eaeaea;
     color: #eb893e;
 }
-
