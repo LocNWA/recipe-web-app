@@ -47,11 +47,11 @@
 
 .input-field {
     background: #e5eeeb;
-    margin: 15px 0;
+    margin: 20px 0;
     border-radius: 3px;
     display: flex;
     align-items: center;
-    max-height: 65px;
+    max-height: 70px;
     transition: max-height 0.5s;
     overflow: hidden;
 }
@@ -105,6 +105,7 @@ form p a {
 }
 
 .sbtn-field button {
+    margin-bottom: 30%;
     flex-basis: 48%;
     background: #eb893e;
     color: #fff;
@@ -118,6 +119,10 @@ form p a {
 
 .input-group {
     height: 140px;
+}
+
+.fgp {
+    margin-bottom: 20px;
 }
 
 .btn-field button.disable {

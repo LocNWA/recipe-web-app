@@ -1,0 +1,14 @@
+.search button {
+    background: #acb4b5;
+    color: #fff;
+    height: 23px;
+    cursor: pointer;
+}
+
+.logo{
+    font-family: "League Spartan Black", sans-serif;
+    font-size: 28px;
+    color: #213032;
+    margin-right: 30px;
+    cursor: pointer;
+}
