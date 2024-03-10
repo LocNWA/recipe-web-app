@@ -31,6 +31,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // ... (existing code)
+        
+            if ($conn->query($sql) === TRUE) {
+                // Retrieve the user ID of the newly created user
+                $user_id = $conn->insert_id;
+        
+                // Create a default chef profile for the user
+                $default_profile_sql = "INSERT INTO chef_profiles (user_id, full_name) VALUES ('$user_id', '$username')";
+                $conn->query($default_profile_sql);
+        
+                // Redirect to the home page after successful sign-up
+                header("Location: index.php");
+                exit();
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
     }
 }
 
