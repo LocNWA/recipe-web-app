@@ -1,8 +1,28 @@
 <?php
 include('db_connection.php');
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to the login page if not logged in
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Retrieve user profile information
+$sql = "SELECT * FROM users WHERE id = '$user_id'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $profile = $result->fetch_assoc();
+} else {
+    // Handle the case where the user profile doesn't exist
+}
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,19 +39,18 @@ $conn->close();
 
 <body>
     <header>
-        <div class="logo">LOC'S RECIPES</div>
+        <div class="logo">Loc's Recipes</div>
         <div class="nav-bar">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.php">Home</a></li>
                 <li><a href="recipes.php">Recipes</a></li>
-                <li><a href="login.php">User Login</a></li>
-                <li><a href="login.php">Chef Login</a></li>
-                <li><a href="signup.php">Sign Up</a></li>
+                <li><a style='color:#D2D0C3;' href="logout.php">Logout</a></li>
             </ul>
         </div>
     </header>
     <div class="hero">
         <div class="content">
+            <p style='color:gold; '>Welcome, <?php echo $profile['username']; ?>!</p>
             <h4>Spark Your Taste Buds</h4>
             <h1>Discover Taste Sensations</h1>
             <h3>Elevate Your Cooking Game</h3>
@@ -65,9 +84,9 @@ $conn->close();
     <section class="contact">
         <div class="contact-info">
             <h2>Contact Information</h2>
-            <p><strong>Address:</strong>123 Nana Street, Locville, Ghana</p>
-            <p><strong>Phone:</strong>+233242223631</p>
-            <p><strong>Email:</strong>info@locrecipes.com</p>
+            <p><strong>Address:</strong> LD Street, Locville, Ghana</p>
+            <p><strong>Phone:</strong> +233242223631</p>
+            <p><strong>Email:</strong> info@locrecipes.com</p>
         </div>
         <div class="contact-form">
             <h2>Contact Form</h2>

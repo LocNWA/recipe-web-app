@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="remixicons/fonts/remixicon.css">
     <link rel="stylesheet" href="assets/css/mstyle.css">
-    <link rel="stylesheet" href="assets/css/msignupstyle.css">
+    <link rel="stylesheet" href="assets/css/signinstyle.css">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/950345636d.js" crossorigin="anonymous"></script>
 
-    <title>Sign Up</title>
+    <title>Login</title>
 
 </head>
 
@@ -24,7 +24,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Loc's Recipes</a>
+            <a class="navbar-brand">Loc's Recipes</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,7 +35,7 @@
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
+                        <a class="nav-link" href="signup.php">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -45,28 +45,21 @@
     <section id="sitter">
         <div class="container">
             <div class="form-box">
-                <h1 id="title">Sign Up</h1>
-                <form action="signup_process.php" method="POST">
+                <h1 id="title"><i class="fa-solid fa-user"></i>User Login</h1>
+                <?php if (isset($error)) { echo "<p style='color:red;'>$error</p>"; } ?>
+                <form action="authenticate.php" method="POST">
                     <div class="input-group">
                         <div class="input-field" id="nameField">
                             <i class="fa-solid fa-user"></i>
                             <input type="text" id="username" name="username" placeholder="Username" required>
                         </div>
                         <div class="input-field">
-                            <i class="fa-solid fa-envelope"></i>
-                            <input type="email" id="email" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="input-field">
                             <i class="fa-solid fa-lock"></i>
                             <input type="password" id="password" name="password" placeholder="Password" required>
                         </div>
-                        <div class="input-field">
-                            <i class="fa-solid fa-lock"></i>
-                            <input type="password" id="confirm password" name="confirm password" placeholder="Confirm Password" required>
-                        </div>
                     </div>
                     <div class="btn-field">
-                        <button type="submit" value="Sign up" id="signupBtn">Sign up</button>
+                        <button type="submit" value="Login" id="login">Login</button>
                     </div>
                 </form>
             </div>

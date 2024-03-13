@@ -12,21 +12,20 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.8">
     <meta http:equiv="X-UA-Compatible" content="IE-edge">
     <link rel="stylesheet" href="assets/CSS/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          
     <title>Loc's Recipes</title>
 </head>
 
 <body>
     <header>
-        <div class="logo">LOC'S RECIPES</div>
+        <div class="logo">Loc's Recipes</div>
         <div class="nav-bar">
             <ul>
-                <li><a href="home.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="recipes.php">Recipes</a></li>
-                <li><a href="login.php">User Login</a></li>
-                <li><a href="login.php">Chef Login</a></li>
+                <li><a href="userlogin.php">User Login</a></li>
+                <li><a href="cheflogin.php">Chef Login</a></li>
                 <li><a href="signup.php">Sign Up</a></li>
             </ul>
         </div>
@@ -66,9 +65,9 @@ $conn->close();
     <section class="contact">
         <div class="contact-info">
             <h2>Contact Information</h2>
-            <p><strong>Address:</strong>123 Nana Street, Locville, Ghana</p>
-            <p><strong>Phone:</strong>+233242223631</p>
-            <p><strong>Email:</strong>info@locsrecipes.com</p>
+            <p><strong>Address:</strong> LD Street, Locville, Ghana</p>
+            <p><strong>Phone:</strong> +233242223631</p>
+            <p><strong>Email:</strong> info@locrecipes.com</p>
         </div>
         <div class="contact-form">
             <h2>Contact Form</h2>
@@ -89,7 +88,7 @@ $conn->close();
             <a href="#" class="social-icon"> <i class="fab fa-twitter"></i> </a>
             <a href="#" class="social-icon"> <i class="fab fa-instagram"></i> </a>
         </div>
-        <h5>CopyRight © 2024 By Loc's Recipes </h5>
+        <h5>Copyright © 2024 By Loc's Recipes </h5>
     </footer>
 
     <script src="script.js"></script>

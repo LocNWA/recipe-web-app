@@ -11,7 +11,7 @@ html{
 }
 header{
 width: 100%;
-height: 80px;
+height: 10vh;
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -32,11 +32,10 @@ input{
     background: whitesmoke;
 }
 .logo{
-    font-family: "League Spartan Black", sans-serif;
+    font-family: "Dela Gothic One", sans-serif;
     font-size: 28px;
     color: #213032;
     margin-right: 30px;
-    cursor: pointer;
 }
 .nav-bar ul{
     display: flex;
@@ -67,7 +66,6 @@ input{
     margin-top: 29%;
     margin-left: 43%;
 }
-
 p{
     color: #edffef;
     margin-right: 90px;
