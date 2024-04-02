@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 // Retrieve chef profile information
-$profile_sql = "SELECT * FROM chef_profiles WHERE user_id = '$user_id'";
+$profile_sql = "SELECT * FROM chefs WHERE user_id = '$user_id'";
 $profile_result = $conn->query($profile_sql);
 
 if ($profile_result->num_rows > 0) {
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $bio = $_POST['bio'];
 
     // Update chef profile information
-    $update_sql = "UPDATE chef_profiles SET full_name = '$full_name', bio = '$bio' WHERE user_id = '$user_id'";
+    $update_sql = "UPDATE chefs SET full_name = '$full_name', bio = '$bio' WHERE user_id = '$user_id'";
     $conn->query($update_sql);
 
     // Redirect back to the chef dashboard

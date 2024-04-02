@@ -47,7 +47,7 @@
             <div class="form-box">
                 <h1 id="title"><i class="fa-solid fa-kitchen-set"></i>Chef Login</h1>
                 <?php if (isset($error)) { echo "<p style='color:red;'>$error</p>"; } ?>
-                <form action="authenticate.php" method="POST">
+                <form action="authenticatechef.php" method="POST">
                     <div class="input-group">
                         <div class="input-field" id="nameField">
                             <i class="fa-solid fa-user"></i>

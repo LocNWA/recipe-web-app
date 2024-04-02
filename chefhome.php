@@ -1,9 +1,28 @@
 <?php
 include('db_connection.php');
+session_start();
 
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to the login page if not logged in
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+// Retrieve user profile information
+$sql = "SELECT * FROM users WHERE id = '$user_id'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $profile = $result->fetch_assoc();
+} else {
+    // Handle the case where the user profile doesn't exist
+}
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +32,6 @@ $conn->close();
     <meta http:equiv="X-UA-Compatible" content="IE-edge">
     <link rel="stylesheet" href="assets/CSS/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-          
     <title>Loc's Recipes</title>
 </head>
 
@@ -22,17 +40,16 @@ $conn->close();
         <div class="logo">Loc's Recipes</div>
         <div class="nav-bar">
             <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="adminlogin.php">Admin</a></li>
+                <li><a href="chefhome.php">Home</a></li>
                 <li><a href="recipes.php">Recipes</a></li>
-                <li><a href="userlogin.php">User Login</a></li>
-                <li><a href="cheflogin.php">Chef Login</a></li>
-                <li><a href="signup.php">Sign Up</a></li>
+                <li><a href="submit_recipe.php">Add Recipe</a></li>
+                <li><a style='color:#D2D0C3;' href="logout.php">Logout</a></li>
             </ul>
         </div>
     </header>
     <div class="hero">
         <div class="content">
+            <p style='color:gold; '>Welcome, <?php echo $profile['username']; ?>!</p>
             <h4>Spark Your Taste Buds</h4>
             <h1>Discover Taste Sensations</h1>
             <h3>Elevate Your Cooking Game</h3>
@@ -89,7 +106,7 @@ $conn->close();
             <a href="#" class="social-icon"> <i class="fab fa-twitter"></i> </a>
             <a href="#" class="social-icon"> <i class="fab fa-instagram"></i> </a>
         </div>
-        <h5>Copyright © 2024 By Loc's Recipes </h5>
+        <h5>CopyRight © 2024 By Loc's Recipes </h5>
     </footer>
 
     <script src="script.js"></script>

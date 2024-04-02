@@ -5,7 +5,7 @@ session_start();
 // Check if the user is signed in
 if (!isset($_SESSION['user_id'])) {
     // Redirect to the login page if not signed in
-    header("Location: login.php");
+    header("Location: cheflogin.php");
     exit();
 }
 
@@ -16,60 +16,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prep_time = $_POST["prep_time"];
     $cooking_time = $_POST["cooking_time"];
 
-    // Perform basic validation (you should enhance this)
-    if (empty($title) || empty($instructions) || empty($prep_time) || empty($cooking_time)) {
-        $error_message = "All fields are required.";
+
+    if(isset($_POST["submit"])) {
+        $sql = "INSERT INTO recipes (title, instructions, prep_time, cooking_time) VALUES ('$title', '$instructions', '$prep_time', '$cooking_time')";
+    }    
+    if ($conn->query($sql) === TRUE) {
+        // Recipe added successfully, redirect to the home page
+        header("Location: chefhome.php");
+        exit();
     } else {
-        // Upload image file
-        $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-        // Check if image file is a actual image or fake image
-        if(isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["image"]["tmp_name"]);
-            if($check !== false) {
-                $uploadOk = 1;
-            } else {
-                $error_message = "File is not an image.";
-                $uploadOk = 0;
-            }
-        }
-
-        // Check file size
-        if ($_FILES["image"]["size"] > 500000) {
-            $error_message = "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-
-        // Allow certain file formats
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-            $error_message = "Sorry, only JPG, JPEG, PNG files are allowed.";
-            $uploadOk = 0;
-        }
-
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            $error_message = "Sorry, your file was not uploaded.";
-        } else {
-            if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                // File uploaded successfully, now insert recipe details into the database
-                $media_upload = $target_file;
-                $sql = "INSERT INTO recipes (user_id, title, instructions, prep_time, cooking_time, media_upload) VALUES ('$user_id', '$title', '$instructions', '$prep_time', '$cooking_time', '$media_upload')";
-
-                if ($conn->query($sql) === TRUE) {
-                    // Recipe added successfully, redirect to the home page
-                    header("Location: index.php");
-                    exit();
-                } else {
-                    $error_message = "Error: " . $sql . "<br>" . $conn->error;
-                }
-            } else {
-                $error_message = "Sorry, there was an error uploading your file.";
-            }
-        }
+        $error_message = "Error: " . $sql . "<br>" . $conn->error;
     }
+    
 }
 
 $conn->close();
@@ -77,31 +35,71 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="remixicons/fonts/remixicon.css">
+    <link rel="stylesheet" href="assets/CSS/mstyle.css">
+
     <title>Submit Recipe</title>
 </head>
+
 <body>
-    <h2>Submit Recipe</h2>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Add Recipe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="chefhome.php">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav <!-- // NAVBAR -->
+
     <?php
     // Display error message if there's an error
     if (isset($error_message)) {
         echo "<p style='color: red;'>$error_message</p>";
     }
     ?>
-    <form action="submit_recipe.php" method="POST" enctype="multipart/form-data">
-        <label for="title">Recipe Title</label>
-        <input type="text" id="title" name="title" required>
-        <label for="instructions">Instructions</label>
-        <textarea id="instructions" name="instructions" required></textarea>
-        <label for="prep_time">Prep Time (minutes)</label>
-        <input type="number" id="prep_time" name="prep_time" required>
-        <label for="cooking_time">Cooking Time (minutes)</label>
-        <input type="number" id="cooking_time" name="cooking_time" required>
-        <label for="image">Upload Image</label>
-        <input type="file" id="image" name="image" accept="image/*" required>
-        <input type="submit" name="submit" value="Submit Recipe">
-    </form>
+
+    <section id="subrec">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <form action="submit_recipe.php" method="POST" enctype="multipart/form-data">
+                        <div>
+                            <input type="text" id="title" name="title" placeholder="Recipe Title" required>
+                        </div>
+                        <div class="form group col-12">
+                            <textarea id="instructions" name="instructions" placeholder="Instructions"
+                                required></textarea>
+                        </div>
+                        <div class="form group col-12">
+                            <input type="number" id="prep_time" name="prep_time" placeholder="Prep Time (Minutes)"
+                                required>
+                        </div>
+                        <div class="form group col-12">
+                            <input type="number" id="cooking_time" name="cooking_time"
+                                placeholder="Cooking Time (Minutes)" required>
+                        </div>
+                        <div class="form group col-12">
+                            <button type="submit" class="btn btn-brand">Submit Recipe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>

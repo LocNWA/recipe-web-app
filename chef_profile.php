@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 // Retrieve chef profile information
-$profile_sql = "SELECT * FROM chef_profiles WHERE user_id = '$user_id'";
+$profile_sql = "SELECT * FROM chefs WHERE user_id = '$chef_id'";
 $profile_result = $conn->query($profile_sql);
 
 if ($profile_result->num_rows > 0) {
