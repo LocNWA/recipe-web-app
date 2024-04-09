@@ -43,6 +43,7 @@ $conn->close();
                 <li><a href="chefhome.php">Home</a></li>
                 <li><a href="recipes.php">All Recipes</a></li>
                 <li><a href="favrecipes.php">Favorite Recipes</a></li>
+                <li><a href="user_profile.php">Profile</a></li>
                 <li><a style='color:#D2D0C3;' href="logout.php">Logout</a></li>
             </ul>
         </div>

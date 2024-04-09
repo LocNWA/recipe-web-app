@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
             $_SESSION["user_id"] = $row["id"];
             $_SESSION["username"] = $row["username"];
-            header("Location: home.php"); // Redirect to the user profile page
+            header("Location: userhome.php"); // Redirect to the user profile page
             exit();
         } else {
             $error = "Invalid username or password.";
