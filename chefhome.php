@@ -41,8 +41,10 @@ $conn->close();
         <div class="nav-bar">
             <ul>
                 <li><a href="chefhome.php">Home</a></li>
-                <li><a href="recipes.php">Recipes</a></li>
+                <li><a href="recipes.php">All Recipes</a></li>
+                <li><a href="myrecipes.php">My Recipes</a></li>
                 <li><a href="submit_recipe.php">Add Recipe</a></li>
+                <li><a href="chef_profile.php">Profile</a></li>
                 <li><a style='color:#D2D0C3;' href="logout.php">Logout</a></li>
             </ul>
         </div>
@@ -55,8 +57,10 @@ $conn->close();
             <h3>Elevate Your Cooking Game</h3>
         </div>
         <div class="search">
-            <input type="text" id="searchInput" placeholder="Search recipes">
-            <button type="submit" id="searchButton">Search</button>
+            <form action="search_recipe.php" method="GET">
+                <input type="text" id="searchInput" name="search_term" placeholder="Search recipes">
+                <button type="submit" id="searchButton">Search</button>
+            </form>
         </div>
     </div>
 

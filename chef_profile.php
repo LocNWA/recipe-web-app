@@ -11,11 +11,15 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 // Retrieve chef profile information
-$profile_sql = "SELECT * FROM chefs WHERE user_id = '$chef_id'";
-$profile_result = $conn->query($profile_sql);
+$sql = "SELECT * FROM users WHERE id = '$user_id'";
+$profile_result = $conn->query($sql);
 
-if ($profile_result->num_rows > 0) {
-    $profile = $profile_result->fetch_assoc();
+$sql2 = "SELECT * FROM chefs WHERE id = '$chef_id'";
+$profile_result2 = $conn->query($sql2);
+
+
+if ($profile_result2->num_rows > 0) {
+    $profile = $profile_result2->fetch_assoc();
 } else {
     // Handle the case where the chef profile doesn't exist
 }

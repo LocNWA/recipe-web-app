@@ -37,6 +37,14 @@ $conn->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
+    <a href="filter_ingredients.php">Filter by ingredient</a>
+    <div class="search">
+        <form action="search_recipe.php" method="GET">
+            <input type="text" id="searchInput" name="search_term" placeholder="Search recipes">
+            <button type="submit" id="searchButton">Search</button>
+        </form>
+    </div>
+
 
 <script>
     function favoriteRecipe(recipeId) {
