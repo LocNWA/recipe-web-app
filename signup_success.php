@@ -8,6 +8,6 @@
 <body>
     <h1>Sign Up Successful!</h1>
     <p>Your account has been created successfully. Please check your email to verify your account.</p>
-    <p><a href="login.php">Login</a></p>
+    <p><a href="userlogin.php">Login</a></p>
 </body>
 </html>

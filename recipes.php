@@ -1,32 +1,3 @@
-<?php
-include('db_connection.php');
-
-// Fetch recipes with average ratings from the database
-$sql = "SELECT recipes.id, recipes.title, recipes.prep_time, recipes.cooking_time, recipes.media_upload, AVG(ratings.rating) AS average_rating
-        FROM recipes
-        LEFT JOIN ratings ON recipes.id = ratings.recipe_id
-        GROUP BY recipes.id";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<h2>" . $row["title"] . "</h2>";
-        echo "<p>Prep Time: " . $row["prep_time"] . " minutes</p>";
-        echo "<p>Cooking Time: " . $row["cooking_time"] . " minutes</p>";
-        echo "<p>Average Rating: " . round($row["average_rating"], 1) . "</p>";
-        echo "<div class='rating-stars' data-rating='" . round($row["average_rating"]) . "'></div>";
-        echo "<img src='" . $row["media_upload"] . "' alt='" . $row["title"] . "'><br>";
-        echo "<button onclick='favoriteRecipe(" . $row["id"] . ")'>Favorite</button>";
-        echo "<button onclick='rateRecipe(" . $row["id"] . ")'>Rate</button>";
-        echo "<a href='recipe_details.php?id=" . $row["id"] . "'>View Details</a><hr>";
-    }
-} else {
-    echo "No recipes found.";
-}
-
-$conn->close();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +6,14 @@ $conn->close();
     <title>All Recipes</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <!-- Include Remix Icons CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="usingAjax.js"></script>
+
 </head>
 <body>
     <a href="filter_ingredients.php">Filter by ingredient</a>
@@ -45,6 +24,47 @@ $conn->close();
         </form>
     </div>
 
+    <?php
+    include('db_connection.php');
+
+    // Fetch recipes with average ratings from the database
+    $sql = "SELECT recipes.id, recipes.title, recipes.prep_time, recipes.cooking_time, recipes.media_upload, AVG(ratings.rating) AS average_rating
+            FROM recipes
+            LEFT JOIN ratings ON recipes.id = ratings.recipe_id
+            GROUP BY recipes.id";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<div class='recipe'>";
+            echo "<h2>" . $row["title"] . "</h2>";
+            echo "<p>Prep Time: " . $row["prep_time"] . " minutes</p>";
+            echo "<p>Cooking Time: " . $row["cooking_time"] . " minutes</p>";
+            echo "<p>Average Rating: " . round($row["average_rating"], 1) . "</p>";
+            echo "<div class='rating-stars' data-rating='" . round($row["average_rating"]) . "'></div>";
+            echo "<img src='" . $row["media_upload"] . "' alt='" . $row["title"] . "'><br>";
+            echo "<button onclick='favoriteRecipe(" . $row["id"] . ")'>Favorite</button>";
+            echo "<button onclick='rateRecipe(" . $row["id"] . ")'>Rate</button>";
+            echo "<a href='recipe_details.php?id=" . $row["id"] . "'>View Details</a>";
+
+            // Social media sharing buttons with remix icons
+            $recipeTitle = urlencode($row["title"]);
+            $recipeUrl = urlencode("http://localhost/php/recipe-web-app/recipes.php/recipe_details.php?id=" . $row["id"]);
+            echo "<div class='social-media-buttons'>";
+            echo "<a href='https://www.facebook.com/sharer/sharer.php?u=$recipeUrl' target='_blank'><i class='ri-facebook-fill'></i></a>";
+            echo "<a href='https://twitter.com/intent/tweet?url=$recipeUrl&text=$recipeTitle' target='_blank'><i class='ri-twitter-fill'></i></a>";
+            echo "<a href='https://pinterest.com/pin/create/button/?url=$recipeUrl&description=$recipeTitle' target='_blank'><i class='ri-pinterest-fill'></i></a>";
+            echo "</div>";
+
+            echo "<hr>";
+            echo "</div>";
+        }
+    } else {
+        echo "No recipes found.";
+    }
+
+    $conn->close();
+    ?>
 
 <script>
     function favoriteRecipe(recipeId) {

@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <title>Recipe Search</title>
+    <!-- Water.css library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="usingAjax.js"></script>
+
 </head>
 <body>
     <label for="ingredients">Enter Ingredients:</label>
@@ -41,7 +47,7 @@
         }
 
         function displayRecipes(recipes) {
-            const recipeList = document.getElementById('recipeList');
+            const recipeList = document.getElementById('recipes');
             recipeList.innerHTML = ''; // Clear previous results
 
             if (recipes.length === 0) {
@@ -55,23 +61,23 @@
                 recipeDiv.classList.add('recipe');
 
                 const titleHeading = document.createElement('h2');
-                titleHeading.textContent = title;
+                titleHeading.textContent = recipe.title;
 
                 const prepTimeParagraph = document.createElement('p');
-                prepTimeParagraph.innerHTML = `<strong>Prep Time:</strong> ${prep_time} minutes`;
+                prepTimeParagraph.innerHTML = `<strong>Prep Time:</strong> ${recipe.prep_time} minutes`;
 
                 const cookingTimeParagraph = document.createElement('p');
-                cookingTimeParagraph.innerHTML = `<strong>Cooking Time:</strong> ${cooking_time} minutes`;
+                cookingTimeParagraph.innerHTML = `<strong>Cooking Time:</strong> ${recipe.cooking_time} minutes`;
 
                 const instructionsParagraph = document.createElement('p');
-                instructionsParagraph.innerHTML = `<strong>Instructions:</strong> ${instructions}`;
+                instructionsParagraph.innerHTML = `<strong>Instructions:</strong> ${recipe.instructions}`;
 
                 const mediaImage = document.createElement('img');
-                mediaImage.src = media_upload;
-                mediaImage.alt = title;
+                mediaImage.src = recipe.media_upload;
+                mediaImage.alt = recipe.title;
 
                 const viewDetailsLink = document.createElement('a');
-                viewDetailsLink.href = `recipe_details.php?id=${id}`;
+                viewDetailsLink.href = `recipe_details.php?id=${recipe.id}`;
                 viewDetailsLink.textContent = 'View Details';
 
                 recipeDiv.appendChild(titleHeading);
