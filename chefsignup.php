@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/950345636d.js" crossorigin="anonymous"></script>
 
-    <title>Sign Up</title>
+    <title>Chef Sign Up</title>
 
 </head>
 
@@ -35,12 +35,8 @@
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="userlogin.php">Login</a>
+                        <a class="nav-link" href="cheflogin.php">Chef Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="chefsignup.php">Chef Sign Up</a>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -49,8 +45,8 @@
     <section id="sitter">
         <div class="container">
             <div class="form-box">
-                <h1 id="title">Sign Up</h1>
-                <form action="signup_process.php" method="POST">
+                <h1 id="title">Chef Sign Up</h1>
+                <form action="signup_process_chef.php" method="POST">
                     <div class="input-group">
                         <div class="input-field" id="nameField">
                             <i class="fa-solid fa-user"></i>

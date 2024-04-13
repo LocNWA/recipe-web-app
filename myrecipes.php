@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
         echo "<p><strong>Cooking Time:</strong> " . htmlspecialchars($recipe['cooking_time']) . " minutes</p>";
         echo "<img src='" . htmlspecialchars($recipe['media_upload']) . "' alt='" . htmlspecialchars($recipe['title']) . "'><br>";
         echo "<a href='edit_recipe.php?id=" . $recipe['id'] . "'>Edit</a> | ";
-        echo "<a href='delete_recipe.php?id=" . $recipe['id'] . "'>Delete</a>";
+        echo "<a href='delete_recipe_chef.php?id=" . $recipe['id'] . "'>Delete</a>";
         echo "<hr>";
         echo "</div>";
     }
